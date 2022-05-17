@@ -73,7 +73,7 @@ fn main() -> Result<(), failure::Error> {
         Ok(debug) => {
             if debug {
                 log_panics::init();
-                simple_logging::log_to_file("/var/log/ncmt.log", LevelFilter::Debug)?;
+                simple_logging::log_to_file("/var/log/ncmt.log", LevelFilter::Info)?;
             }
         }
         Err(e) => error!("{}", e),

@@ -73,10 +73,13 @@ impl Encrypt {
 
     fn create_key(&self, len: usize) -> String {
         return hex::encode(
-            thread_rng()
-                .sample_iter(&Alphanumeric)
-                .take(len)
-                .collect::<String>(),
+            String::from_utf8(
+                thread_rng()
+                    .sample_iter(&Alphanumeric)
+                    .take(len)
+                    .collect::<Vec<u8>>(),
+            )
+            .unwrap(),
         )[..16]
             .to_string();
     }

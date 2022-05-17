@@ -1,6 +1,6 @@
 use std::slice;
 use tui::style::Color;
-use tui::widgets::canvas::Shape;
+use tui::widgets::canvas::{Points, Shape};
 
 pub struct PointsIterator<'a> {
     iter: slice::Iter<'a, (f64, f64)>,
@@ -37,12 +37,13 @@ impl Default for Circle {
     }
 }
 
-impl<'a> Shape<'a> for Circle {
-    fn color(&self) -> Color {
-        self.color
-    }
-    fn points(&'a self) -> Box<dyn Iterator<Item = (f64, f64)> + 'a> {
-        Box::new(self.into_iter())
+impl Shape for Circle {
+    fn draw(&self, painter: &mut tui::widgets::canvas::Painter) {
+        let points = Points {
+            coords: self.circle,
+            color: self.color,
+        };
+        points.draw(painter);
     }
 }
 

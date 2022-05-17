@@ -440,7 +440,7 @@ impl App {
                     RepeatState::Shuffle => {
                         let list = &mut self.my_playlist;
                         let mut rng = rand::thread_rng();
-                        let next_index = rng.gen_range(0, list.tracks.len());
+                        let next_index = rng.gen_range(0.. list.tracks.len());
                         list.selected_index = next_index;
 
                         let track_playing =
